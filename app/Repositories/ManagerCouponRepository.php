@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\ManagerCoupon;
+use InfyOm\Generator\Common\BaseRepository;
+
+/**
+ * Class CouponRepository
+ * @package App\Repositories
+ * @version August 23, 2020, 6:10 pm UTC
+ *
+ * @method Coupon findWithoutFail($id, $columns = ['*'])
+ * @method Coupon find($id, $columns = ['*'])
+ * @method Coupon first($columns = ['*'])
+*/
+class ManagerCouponRepository extends BaseRepository
+{
+    /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'code',
+        'discount',
+        'discount_type',
+        'description',
+        'food_id',
+                'restaurant',
+                        'manager',
+        'restaurant_id',
+        'category_id',
+        'expires_at',
+        'enabled'
+    ];
+
+    /**
+     * Configure the Model
+     **/
+    public function model()
+    {
+        return ManagerCoupon::class;
+    }
+}
