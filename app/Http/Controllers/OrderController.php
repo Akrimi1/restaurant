@@ -92,7 +92,27 @@ class OrderController extends Controller
          
      }
      
+       /**
+     * Show the form for creating a new Order.
+     *
+     * @return Response
+     */
      
+    public function create()
+    {
+        $user = $this->userRepository->getByCriteria(new ClientsCriteria())->pluck('name', 'id');
+        $driver = $this->userRepository->getByCriteria(new DriversCriteria())->pluck('name', 'id');
+        
+        $orderStatus = $this->orderStatusRepository->pluck('status', 'id');
+        
+        $hasCustomField = in_array($this->orderRepository->model(), setting('custom_field_models', []));
+        if ($hasCustomField) {
+            $customFields = $this->customFieldRepository->findByField('custom_field_model', $this->orderRepository->model());
+            $html = generateCustomField($customFields);
+        }
+        
+        return view('orders.create')->with("customFields", isset($html) ? $html : false)->with("user", $user)->with("driver", $driver)->with("orderStatus", $orderStatus);
+    }
      
 //     public function indexa(OrderDataTable $orderDataTable)
 //     {
@@ -168,26 +188,7 @@ class OrderController extends Controller
      }
      
      
-    /**
-     * Show the form for creating a new Order.
-     *
-     * @return Response
-     */
-     
-    public function create()
-    {
-        $user = $this->userRepository->getByCriteria(new ClientsCriteria())->pluck('name', 'id');
-        $driver = $this->userRepository->getByCriteria(new DriversCriteria())->pluck('name', 'id');
-
-        $orderStatus = $this->orderStatusRepository->pluck('status', 'id');
-
-        $hasCustomField = in_array($this->orderRepository->model(), setting('custom_field_models', []));
-        if ($hasCustomField) {
-            $customFields = $this->customFieldRepository->findByField('custom_field_model', $this->orderRepository->model());
-            $html = generateCustomField($customFields);
-        }
-        return view('orders.create')->with("customFields", isset($html) ? $html : false)->with("user", $user)->with("driver", $driver)->with("orderStatus", $orderStatus);
-    }
+  
 
     /**
      * Store a newly created Order in storage.

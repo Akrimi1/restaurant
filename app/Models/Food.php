@@ -55,7 +55,7 @@ class Food extends Model implements HasMedia
         // 'restaurant_id' => 'required|exists:restaurants,id',
         'category_id' => 'required|exists:categories,id'
     ];
-
+ 
     public $table = 'foods';
     public $fillable = [
         'name',

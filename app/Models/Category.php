@@ -12,7 +12,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\Models\Media;
 
 /**
@@ -133,7 +133,7 @@ class Category extends Model implements HasMedia
     {
         return $this->hasMedia('image') ? true : false;
     }
-
+ 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

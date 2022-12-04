@@ -6,7 +6,7 @@
  * Copyright (c) 2020
  *
  */
-
+ 
 namespace App\Models;
 
 use Eloquent as Model;
