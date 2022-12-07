@@ -236,7 +236,7 @@ die;
        $vendors=DB::table("vendors")->get();
        $vendors= json_decode( json_encode($vendors), true);
        $vendors_list = array();
-
+       //dd($vendors);
        foreach ($vendors as $key => $value) {
           $vendors_list[]=$value['category'];
        }
@@ -342,7 +342,7 @@ die;
        
        $input['user_table_id'] = $user_table_id;
 
-
+ 
       // finding of the restaurant comission
         $admin_comission = $input['admin_commission'];
         $driver_comission = $input['driver_commission'];
@@ -409,9 +409,10 @@ die;
      }
     
      $admin_commission = $input['admin_commission'];
-     //$delivery_fee = $input['delivery_fee'];
-     //$delivery_range = $input['delivery_range'];
-     //$default_tax = $input['default_tax'];
+     $driver_comission = $input['driver_commission'];
+     $delivery_fee = $input['delivery_fee'];
+     $delivery_range = $input['delivery_range'];
+     $default_tax = $input['default_tax'];
      $closed = $input['closed'];
      $active = $input['active'];
      $available_for_delivery = $input['available_for_delivery'];
@@ -554,6 +555,7 @@ die;
 
 //   vendors------------field  //
         $vendors=DB::table("vendors")->get();
+        
         $vendors= json_decode( json_encode($vendors), true);
         $vendors_list = array();
 

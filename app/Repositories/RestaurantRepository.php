@@ -39,6 +39,7 @@ class RestaurantRepository extends BaseRepository implements CacheableInterface
         'closed',
         'admin_commission',
         'restaurant_commission',
+        'driver_commission',
         'managerName',
         'managerId',
         'email',

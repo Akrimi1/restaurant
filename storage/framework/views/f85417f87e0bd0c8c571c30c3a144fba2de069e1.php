@@ -32,12 +32,10 @@
          <!-- small box -->
          <div class="small-box dash_box" id="colorsTiles">
          <div class="inner">
-               <p>Managers</p>
-               <h3>test</h3>
+               <p>Admin Commission</p>
+               <h3><?php echo e($admin_commission ."%"); ?></h3>
             </div>
-            <div class="icon">
-               <i class="fa fa-shopping-bag"></i>
-            </div>
+           
             <a href="<?php echo route('orders.index'); ?>" class="small-box-footer"><?php echo e(trans('lang.dashboard_more_info')); ?>
 
             <i class="fa fa-arrow-circle-right"></i>
@@ -45,7 +43,7 @@
          </div>
       </div>
       <!-- ./col -->
-      <div class="col-lg-2 col-6" >
+      <div class="col-md-3 col-4" >
          <!-- small box -->
          <div class="small-box dash_box" id="colorsTiles2">
             <div class="inner">
@@ -66,12 +64,12 @@
          </div>
       </div>
       <!-- ./col -->
-      <div class="col-lg-2 col-6" >
+      <div class="col-md-3 col-6" >
          <!-- small box -->
          <div class="small-box dash_box" id="colorsTiles3">
          <div class="inner">
-               <p>Managers</p>
-               <h3>test</h3>
+               <p>Driver Commission</p>
+               <h3><?php echo e($driver_commission ."%"); ?> </h3>
             </div>
             <div class="icon">
                <i class="fa fa-group"></i>
@@ -84,8 +82,8 @@
          <!-- small box -->
          <div class="small-box dash_box" id="colorsTiles4">
          <div class="inner">
-               <p>Managers</p>
-               <h3>test</h3>
+               <p>Profit margin</p>
+               <h3><?php echo e($profit_margin ."%"); ?></h3>
             </div>
             <div class="icon">
                <i class="fa fa-cutlery"></i>
@@ -97,7 +95,7 @@
          <!-- small box -->
          <div class="small-box dash_box" id="colorsTiles5">
             <div class="inner">
-               <p>Managers</p>
+               <p>Net losses</p>
                <h3>test</h3>
             </div>
             <div class="icon">
@@ -106,19 +104,7 @@
             <a href="<?php echo e(url('/manager_details')); ?>" class="small-box-footer"><?php echo e(trans('lang.dashboard_more_info')); ?> <i class="fa fa-arrow-circle-right"></i></a>
          </div>
       </div>
-      <div class="col-lg-2 col-6" >
-         <!-- small box -->
-         <div class="small-box dash_box" id="colorsTiles6">
-            <div class="inner">
-               <p>Delivery Boy</p>
-               <h3>test</h3>
-            </div>
-            <div class="icon">
-               <i class="fa fa-group"></i>
-            </div>
-            <a href="<?php echo route('drivers.index'); ?>" class="small-box-footer"><?php echo e(trans('lang.dashboard_more_info')); ?> <i class="fa fa-arrow-circle-right"></i></a>
-         </div>
-      </div>
+      
       <!-- ./col -->
    </div>
    <!-- /.row -->

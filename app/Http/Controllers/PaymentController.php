@@ -232,13 +232,22 @@ private $userRepository;
         $login_id = \Auth::user()->id;
         
         $earning = $this->paymentRepository->all()->sum('price');
+
+        //added
+        $admin_commission = $this->restaurantRepository->all()->avg('admin_commission');
+        $driver_commission = $this->restaurantRepository->all()->avg('driver_commission');
+        //profit margin
+        $restaurant_commission = 100 - (round($admin_commission,0) + round($driver_commission,0));
+
         $ajaxEarningUrl = route('payments.byMonth',['api_token'=>auth()->user()->api_token]);
         //        dd($ajaxEarningUrl);
         return view('payments.index')
             ->with("ajaxEarningUrl", $ajaxEarningUrl)
             ->with("earning", $earning)
             ->with("login_id", $login_id)
-           
+            ->with("admin_commission", round($admin_commission,0))
+            ->with("driver_commission", round($driver_commission,0))
+            ->with("profit_margin", $restaurant_commission)
             ->with("yearnings", $yearnings)
             ->with("mearnings", $mearnings)
             ->with("order_status_yearly", $order_status_yearly)
