@@ -64,7 +64,7 @@ class CreateRestaurantsTable extends Migration
 
             $table->text('information')->nullable();
 
-            $table->double('admin_commission', 8, 2)->nullable()->default(0);
+            $table->integer('admin_commission')->nullable()->default(0);
 
             $table->double('delivery_fee', 8, 2)->nullable()->default(0);
 
