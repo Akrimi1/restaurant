@@ -614,7 +614,7 @@
    
        });
    
-       //var salesChart = renderChart($salesChart, data, labels);
+       var salesChart = renderChart($salesChart, data, labels);
    
    })
    

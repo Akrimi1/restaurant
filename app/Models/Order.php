@@ -37,6 +37,7 @@ class Order extends Model
 
 
     public $fillable = [
+        'order_number',
         'user_id',
         'order_status_id',
         'tax',
@@ -56,6 +57,7 @@ class Order extends Model
      * @var array
      */
     protected $casts = [
+        'order_number' => 'integer',
         'user_id' => 'integer',
         'order_status_id' => 'integer',
         'tax' => 'double',
@@ -75,6 +77,7 @@ class Order extends Model
      * @var array
      */
     public static $rules = [
+        
         'user_id' => 'required|exists:users,id',
         'order_status_id' => 'required|exists:order_statuses,id',
         'payment_id' => 'exists:payments,id',
