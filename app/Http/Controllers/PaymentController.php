@@ -193,11 +193,19 @@ private $userRepository;
         ->get();
         $yearly_order_delivered = json_decode( json_encode($yearly_order_delivered), true);
         $yearly_order_delivered  = $yearly_order_delivered[0]['delivered'];
+        
+        $yearly_order_cancelled = DB::table('orders')
+        ->select (DB::raw('count(order_status_id) as cancelled'))->where('order_status_id', '=', '6')->where('created_at', 'like', '%'.$date.'%')
+        ->get();
+        $yearly_order_cancelled = json_decode( json_encode($yearly_order_cancelled), true);
+        $yearly_order_cancelled  = $yearly_order_cancelled[0]['cancelled'];
+
         $order_status_yearly['preparing'] = $yearly_order_preparing ;
         $order_status_yearly['completed'] = $yearly_order_completed;
         $order_status_yearly['ready'] = $yearly_order_ready;
         $order_status_yearly['onway'] = $yearly_order_onway;
         $order_status_yearly['delivered'] = $yearly_order_delivered;
+        $order_status_yearly['cancelled'] = $yearly_order_cancelled;
         $monthly_order_preparing = DB::table('orders')
         ->select (DB::raw('count(order_status_id) as preparing'))->where('order_status_id', '=', '2')->where('created_at', 'like', '%'.$current_month.'%')
         ->get();
@@ -229,6 +237,19 @@ private $userRepository;
         $order_status_monthly['onway'] = $monthly_order_onway;
         $order_status_monthly['delivered'] = $monthly_order_delivered;
 
+       
+        $losses =DB::table('orders')
+        ->join('payments', 'orders.payment_id', '=', 'payments.id')        
+        ->select('payments.*')
+        ->where ('orders.order_status_id', '=', '6')
+        ->where('orders.created_at', 'like', '%'.$date.'%')
+        ->get();
+        $netlosses = $losses->sum('price');
+
+
+
+        $yearly_netlosses = json_decode( json_encode($losses), true);
+
         $login_id = \Auth::user()->id;
         
         $earning = $this->paymentRepository->all()->sum('price');
@@ -251,7 +272,9 @@ private $userRepository;
             ->with("yearnings", $yearnings)
             ->with("mearnings", $mearnings)
             ->with("order_status_yearly", $order_status_yearly)
-            ->with("order_status_monthly", $order_status_monthly);
+            ->with("yearly_netlosses", $yearly_netlosses)
+            ->with("netlosses", $netlosses)
+            ->with("order_status_yearly", $order_status_yearly);
         
         /*return $paymentDataTable->render('payments.index');*/
     }

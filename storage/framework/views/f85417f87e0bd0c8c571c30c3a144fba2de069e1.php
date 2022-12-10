@@ -13,12 +13,12 @@
    <div class="container-fluid">
       <div class="row mb-2">
          <div class="col-sm-6">
-            <h1><?php echo e(trans('lang.dashboard')); ?></h1>
+            <h1><?php echo e(trans('lang.payment')); ?></h1>
          </div>
          <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-               <li class="breadcrumb-item"><a href="#"><?php echo e(trans('lang.dashboard')); ?></a></li>
-               <li class="breadcrumb-item active"><?php echo e(trans('lang.dashboard')); ?></li>
+               <li class="breadcrumb-item"><a href="#"><?php echo e(trans('lang.payment')); ?></a></li>
+               <li class="breadcrumb-item active"><?php echo e(trans('lang.payment')); ?></li>
             </ol>
          </div>
       </div>
@@ -35,11 +35,7 @@
                <p>Admin Commission</p>
                <h3><?php echo e($admin_commission ."%"); ?></h3>
             </div>
-           
-            <a href="<?php echo route('orders.index'); ?>" class="small-box-footer"><?php echo e(trans('lang.dashboard_more_info')); ?>
-
-            <i class="fa fa-arrow-circle-right"></i>
-            </a>
+                      
          </div>
       </div>
       <!-- ./col -->
@@ -56,11 +52,7 @@
             </div>
             <div class="icon">
                <i class="fa fa-money"></i>
-            </div>
-            <a href="<?php echo route('payments.index'); ?>" class="small-box-footer"><?php echo e(trans('lang.dashboard_more_info')); ?>
-
-            <i class="fa fa-arrow-circle-right"></i>
-            </a>
+            </div>            
          </div>
       </div>
       <!-- ./col -->
@@ -74,7 +66,6 @@
             <div class="icon">
                <i class="fa fa-group"></i>
             </div>
-            <a href="<?php echo e(url('/users_details')); ?>" class="small-box-footer"><?php echo e(trans('lang.dashboard_more_info')); ?> <i class="fa fa-arrow-circle-right"></i></a>
          </div>
       </div>
       <!-- ./col -->
@@ -88,7 +79,6 @@
             <div class="icon">
                <i class="fa fa-cutlery"></i>
             </div>
-            <a href="<?php echo route('restaurants.index'); ?>" class="small-box-footer"><?php echo e(trans('lang.dashboard_more_info')); ?> <i class="fa fa-arrow-circle-right"></i></a>
          </div>
       </div>
       <div class="col-lg-2 col-6" >
@@ -96,12 +86,15 @@
          <div class="small-box dash_box" id="colorsTiles5">
             <div class="inner">
                <p>Net losses</p>
-               <h3>test</h3>
+               <?php if(setting('currency_right',false) != false): ?>
+               <h3><?php echo e($netlosses); ?><?php echo e(setting('default_currency')); ?></h3>
+               <?php else: ?>
+               <h3><?php echo e(setting('default_currency')); ?><?php echo e($netlosses); ?></h3>
+               <?php endif; ?>
             </div>
             <div class="icon">
                <i class="fa fa-group"></i>
             </div>
-            <a href="<?php echo e(url('/manager_details')); ?>" class="small-box-footer"><?php echo e(trans('lang.dashboard_more_info')); ?> <i class="fa fa-arrow-circle-right"></i></a>
          </div>
       </div>
       
@@ -169,31 +162,31 @@
                   <div class="col-md-6">
                      <h3 class="card-title">Order Summary</h3>
                   </div>
-                  <div class="col-md-6">
+                  <!--<div class="col-md-6">
                      <div class="rtab">
-                        <ul class="nav nav-tabs " role="tablist">
+                        <ul class="nav nav-tabs " role="tablist">-->
                            <!--<li class="nav-item">-->
                            <!--	<a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Daily</a>-->
                            <!--</li>-->
-                           <li class="nav-item">
+                           <!--<li class="nav-item">
                               <a class="nav-link active" data-toggle="tab" href="#tabs-2" role="tab">Monthly</a>
-                           </li>
-                           <li class="nav-item">
+                           </li>-->
+                          <!-- <li class="nav-item">
                               <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Yearly</a>
                            </li>
                         </ul>
-                     </div>
-                  </div>
+                     </div>-->
+                  <!--</div>-->
                </div>
             </div>
             <div class="card-body">
                <div class="tab-content">
-                  <!--<div class="tab-pane active" id="tabs-1" role="tabpanel">-->
-                  <!--  <div id="daily_order" style="height:300px; overflow:hidden;"></div>-->
-                  <!--</div>-->
-                  <div class="tab-pane active" id="tabs-2" role="tabpanel">
+                  <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                    <div id="daily_order" style="height:300px; overflow:hidden;"></div>
+               </div>
+                  <!--<div class="tab-pane active" id="tabs-2" role="tabpanel">
                      <div id="monthly_order" style="height:300px;"></div>
-                  </div>
+                  </div>-->
                   <div class="tab-pane" id="tabs-3" role="tabpanel">
                      <div id="yearly_order" style="height:300px;"></div>
                   </div>
@@ -366,83 +359,43 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <?php $__env->stopPush(); ?>
 <?php $__env->startPush('scripts'); ?>
-// <script type="text/javascript">
-   //       google.charts.load("current", {packages:["corechart"]});
+ <script type="text/javascript">
+          google.charts.load("current", {packages:["corechart"]});
    
-   //       google.charts.setOnLoadCallback(drawChart);
+          google.charts.setOnLoadCallback(drawChart);
    
-   //       function drawChart() {
+          function drawChart() {
    
-   //         var data = google.visualization.arrayToDataTable([
+            var data = google.visualization.arrayToDataTable([
    
-   //           ['Order', 'Daily'],
+             
    
-   //           ['On Delivery',11],
+              ['On Delivery',<?php echo e($order_status_yearly['onway']); ?>],
+                ['Delivered',<?php echo e($order_status_yearly['completed']); ?>],
    
-   //           ['Delivered',2],
+              ['Canceled',<?php echo e($order_status_yearly['cancelled']); ?>]
    
-   //           ['Canceled',7]
-   
-   //         ]);
-   
-   
-   
-   //         var options = {
-   
-   //           pieHole: 0.4,
-   
-   //         };
+            ]);
    
    
    
-   //         var chart = new google.visualization.PieChart(document.getElementById('daily_order'));
+            var options = {
    
-   //         chart.draw(data, options);
+              pieHole: 0.4,
    
-   //       }
+            };
    
-   // 
+   
+   
+            var chart = new google.visualization.PieChart(document.getElementById('daily_order'));
+   
+            chart.draw(data, options);
+   
+          }
+   
+    
 </script>
-<script type="text/javascript">
-   google.charts.load("current", {packages:["corechart"]});
-   
-   google.charts.setOnLoadCallback(drawChart);
-   
-   function drawChart() {
-   
-     var data = google.visualization.arrayToDataTable([
-   
-       ['Order', 'Monthly'],
-   
-       ['Preparing',<?php echo $order_status_monthly['preparing']; ?>],
-   
-       ['Completed',<?php echo $order_status_monthly['completed']; ?>],
-   
-       ['Ready',<?php echo $order_status_monthly['ready']; ?>],
-   
-       ['On The Way',<?php echo $order_status_monthly['onway']; ?>],
-   
-       ['Delivered',<?php echo $order_status_monthly['delivered']; ?>]
-   
-     ]);
-   
-   
-   
-     var options = {
-   
-       pieHole: 0.4,
-   
-     };
-   
-   
-   
-     var chart = new google.visualization.PieChart(document.getElementById('monthly_order'));
-   
-     chart.draw(data, options);
-   
-   }
-   
-</script>
+
 <script type="text/javascript">
    google.charts.load("current", {packages:["corechart"]});
    
