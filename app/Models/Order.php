@@ -37,7 +37,6 @@ class Order extends Model
 
 
     public $fillable = [
-        'order_number',
         'user_id',
         'order_status_id',
         'tax',
@@ -57,7 +56,6 @@ class Order extends Model
      * @var array
      */
     protected $casts = [
-        'order_number' => 'integer',
         'user_id' => 'integer',
         'order_status_id' => 'integer',
         'tax' => 'double',
