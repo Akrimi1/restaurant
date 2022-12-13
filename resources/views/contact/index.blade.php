@@ -46,6 +46,13 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
     <!--<input type="hidden" name="rol_id">-->
     <!-- Price Field -->
     <div class="form-group row ">
+        {!! Form::label('stores', trans("lang.store_id"),['class' => 'col-3 control-label text-right']) !!}
+        <div class="col-9">
+            {!! Form::select('stores_name', $stores_name ,null, ['class' => 'form-control']) !!}
+            <div class="form-text text-muted">{{ trans("lang.store_id_help") }}</div>
+        </div>
+    </div>
+    <div class="form-group row ">
         {!! Form::label('Name', trans("Name"), ['class' => 'col-3 control-label text-right']) !!}
         <div class="col-9">
             {!! Form::text('name', null,  ['class' => 'form-control','placeholder'=>  trans("Name")]) !!}   

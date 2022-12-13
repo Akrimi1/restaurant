@@ -24,6 +24,7 @@ class RestaurantRepository extends BaseRepository implements CacheableInterface
      * @var array
      */
     protected $fieldSearchable = [
+        'store_id',
         'name',
         'description',
         'address',

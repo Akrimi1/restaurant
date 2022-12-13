@@ -12,6 +12,8 @@
         <div class="col-9">
             <?php echo Form::text('name', null,  ['class' => 'form-control','placeholder'=>  trans("lang.restaurant_name_placeholder")]); ?>
 
+            <?php echo Form::hidden('store_id', $store_id,  ['class' => 'form-control','placeholder'=>  trans("lang.restaurant_name_placeholder")]); ?>
+
             <div class="form-text text-muted">
                 <?php echo e(trans("lang.restaurant_name_help")); ?>
 

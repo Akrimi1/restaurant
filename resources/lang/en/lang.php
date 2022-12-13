@@ -2100,6 +2100,10 @@ return [
 
     'restaurant_cuisines_help' => 'Select the cuisine for this restaurant',
 
+    'store_id' => 'Store Id',
+
+    'store_id_help' => 'Select the store id',
+
     'extra_group_desc' => 'Description',
 
     'extra_group_create' => 'Create Extra Group',

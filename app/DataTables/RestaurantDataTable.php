@@ -69,6 +69,7 @@ class RestaurantDataTable extends DataTable
         $columns = array_column($this->getColumns(), 'data');
 
         $dataTable = $dataTable
+        
 
             ->editColumn('image', function ($restaurant) {
 

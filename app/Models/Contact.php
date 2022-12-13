@@ -30,14 +30,15 @@ class Contact extends Model
 
 
     public $fillable = [
+        'stores',
         'name',
         'subject',
         'enquiry',
         'email',
         'phone',
-         'role_id',
-          'restaurant_id',
-            'manager_id'
+        'role_id',
+        'restaurant_id',
+        'manager_id'
     ];
 
     /**
@@ -46,6 +47,7 @@ class Contact extends Model
      * @var array
      */
     protected $casts = [
+        'stores' => "integer",
         'name' => 'string',
         'subject' => 'string',
         'enquiry' => 'string',
@@ -62,6 +64,7 @@ class Contact extends Model
      * @var array
      */
     public static $rules = [
+        'stores' => 'required',
         'name' => 'required',
         'subject' => 'required',
         'enquiry' => 'required',

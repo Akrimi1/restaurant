@@ -56,6 +56,7 @@ class Restaurant extends Model implements HasMedia
 
     public $fillable = [
         'user_table_id',
+        'store_id',
         'expectTime',
         'Overallprices',
         'pricePersons',
@@ -92,6 +93,7 @@ class Restaurant extends Model implements HasMedia
      * @var array
      */
     protected $casts = [
+        'store_id' => 'string',
         'name' => 'string',
         'description' => 'string',
         'image' => 'string',

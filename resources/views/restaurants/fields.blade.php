@@ -10,6 +10,7 @@
         {!! Form::label('name', trans("lang.restaurant_name"), ['class' => 'col-3 control-label text-right']) !!}
         <div class="col-9">
             {!! Form::text('name', null,  ['class' => 'form-control','placeholder'=>  trans("lang.restaurant_name_placeholder")]) !!}
+            {!! Form::hidden('store_id', $store_id,  ['class' => 'form-control','placeholder'=>  trans("lang.restaurant_name_placeholder")]) !!}
             <div class="form-text text-muted">
                 {{ trans("lang.restaurant_name_help") }}
             </div>

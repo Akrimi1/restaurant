@@ -47,7 +47,8 @@
                             <thead>
                             <tr>
                         
-                                <th>Name</th></th>
+                                <th>Store</th>
+                                <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Subject</th>
@@ -57,6 +58,7 @@
                             <tbody>
                             @foreach($contact as $key=>$value)
                                 <tr>
+                                    <td>{!! $value['store_id'] !!}</td>
                                     <td>{!! $value['name'] !!}</td>
                                     <td>{!! $value['email'] !!}</td>
                                      <td>
