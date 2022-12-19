@@ -23,7 +23,7 @@ class Terms extends Model
 
     public $fillable = [
         'content'
-    ];
+    ]; 
 
     /**
      * The attributes that should be casted to native types.
@@ -79,5 +79,9 @@ class Terms extends Model
     // {
     //     return $this->belongsTo(\App\Models\TermsCategory::class, 'terms_category_id', 'id');
     // }
+    public function users()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'users');
+    }
     
 }

@@ -28,13 +28,13 @@
     <div class="card-header">
       <ul class="nav nav-tabs align-items-end card-header-tabs w-100">
         <li class="nav-item">
-          <a class="nav-link active" href="{!! url()->current() !!}"><i class="fa fa-list mr-2"></i>{{trans('About Us')}}</a>
+          <a class="nav-link active" href="{!! url()->current() !!}"><i class="fa fa-list mr-2"></i>{{trans('Terms Of Service')}}</a>
         </li>
-        <!--@can('faqs.create')-->
-        <!--<li class="nav-item">-->
-        <!--  <a class="nav-link" href="{!! route('faqs.create') !!}"><i class="fa fa-plus mr-2"></i>{{trans('lang.faq_create')}}</a>-->
-        <!--</li>-->
-        <!--@endcan-->
+        @can('terms.create')
+        <li class="nav-item">
+       <a class="nav-link" href="{!! route('terms.create') !!}"><i class="fa fa-plus mr-2"></i>{{trans('lang.term_create')}}</a>  
+       </li>
+      @endcan
         @include('layouts.right_toolbar', compact('dataTable'))
       </ul>
     </div>
@@ -56,13 +56,13 @@
                             <tbody>
                             @foreach($terms as $key=>$value)
                                 <tr>
-                                         <?php $id = $value['id'];   ?>
+                                         
                                
                                     <td>{!! $value['content'] !!}</td>
                                     <td>
                                      <div class='btn-group btn-group-sm'>
                                        
-                                           <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="{{ url('/terms/edit', $id) }}" class='btn btn-link'>
+                                           <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="{{ url('/terms/edit', $value['id']) }}" class='btn btn-link'>
                                               <i class="fa fa-edit"></i>
                                            </a>
                                        

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\TermsDataTable;
-use App\DataTables\CouponDataTable;
 use App\Http\Requests;
 use App\Http\Requests\UpdateTermsRequest;
+use App\Http\Requests\CreateTermRequest;
 use App\Repositories\TermsRepository;
 use App\Repositories\CustomFieldRepository;
 use Flash;
@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Prettus\Validator\Exceptions\ValidatorException;
 use Auth;
+
 class TermsController extends Controller
 {
     /** @var  TermsRepository */
@@ -39,12 +40,12 @@ class TermsController extends Controller
      * @param TermsDataTable $TermsDataTable
      * @return Response
      */
-    public function index(CouponDataTable $couponDataTable)
+    public function index(TermsDataTable $termsDataTable)
     {
          $user_id = Auth::user()->id;
  $terms = $this->termsRepository->get();
   $terms = json_decode( json_encode($terms), true);
-        return $couponDataTable->render('terms.index')->with("terms", $terms);
+        return $termsDataTable->render('terms.index')->with("terms", $terms);
     }
     
     /**
@@ -52,41 +53,41 @@ class TermsController extends Controller
      *
      * @return Response
      */
-    // public function create()
-    // {
-    //     $faqCategory = $this->faqCategoryRepository->pluck('name','id');
+ public function create()
+     {
         
-    //     $hasCustomField = in_array($this->faqRepository->model(),setting('custom_field_models',[]));
-    //         if($hasCustomField){
-    //             $customFields = $this->customFieldRepository->findByField('custom_field_model', $this->faqRepository->model());
-    //             $html = generateCustomField($customFields);
-    //         }
-    //     return view('faqs.create')->with("customFields", isset($html) ? $html : false)->with("faqCategory",$faqCategory);
-    // }
+        $hasCustomField = in_array($this->termsRepository->model(),setting('custom_field_models',[]));
+             if($hasCustomField){
+                $customFields = $this->customFieldRepository->findByField('custom_field_model', $this->faqRepository->model());
+                 $html = generateCustomField($customFields);
+            }
+         return view('terms.create')->with("customFields", isset($html) ? $html : false);
+     }
 
     /**
      * Store a newly created Faq in storage.
      *
-     * @param CreateFaqRequest $request
+     * @param CreateTermRequest $request
      *
      * @return Response
      */
-    // public function store(CreateFaqRequest $request)
-    // {
-    //     $input = $request->all();
-    //     $customFields = $this->customFieldRepository->findByField('custom_field_model', $this->faqRepository->model());
-    //     try {
-    //         $faq = $this->faqRepository->create($input);
-    //         $faq->customFieldsValues()->createMany(getCustomFieldsValues($customFields,$request));
+     public function store(CreateTermRequest $request)
+     {
+         $input = $request->all();
+        
+         $customFields = $this->customFieldRepository->findByField('custom_field_model', $this->termsRepository->model());
+         try {
+             $term = $this->termsRepository->create($input);
+             $term->customFieldsValues()->createMany(getCustomFieldsValues($customFields,$request));
             
-    //     } catch (ValidatorException $e) {
-    //         Flash::error($e->getMessage());
-    //     }
+         } catch (ValidatorException $e) {
+             Flash::error($e->getMessage());
+         }
 
-    //     Flash::success(__('lang.saved_successfully',['operator' => __('lang.faq')]));
+         Flash::success(__('lang.saved_successfully',['operator' => __('lang.term')]));
 
-    //     return redirect(route('faqs.index'));
-    // }
+         return redirect(route('terms.index'));
+     }
 
     /**
      * Display the specified Faq.

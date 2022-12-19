@@ -897,6 +897,8 @@ return [
     'enquiry_desc'=> 'Enquiry Management',
 
     'faq' => 'Faq',
+    'term' => 'Term',
+    'privacy' => 'Privacy',
 
     'enquiry_table'=> 'Enquiry List',
 
@@ -929,10 +931,16 @@ return [
     'faq_category_updated_at' => 'Updated At',
 
     'faq_create' => 'Create Faq',
+    'term_create' => 'Create Terms',
+    'privacy_create' => 'Create Privacy',
 
     'faq_desc' => 'Faqs Management',
+    'term_desc' => 'Terms Management',
+    'privacy_desc' => 'Privacy Management',
 
     'faq_edit' => 'Edit Faq',
+    'term_edit' => 'Edit Terms',
+    'privacy_edit' => 'Edit Privacy',
 
     'faq_faq_category_id' => 'Faq Category',
 
@@ -941,6 +949,8 @@ return [
     'faq_faq_category_id_placeholder' => 'Insert Faq Category',
 
     'faq_plural' => 'Faqs',
+    'term_plural' => 'Terms',
+    'privacy_plural' => 'Privacy',
 
     'faq_question' => 'Question',
 
@@ -949,8 +959,12 @@ return [
     'faq_question_placeholder' => 'Insert Question',
 
     'faq_table' => 'Faqs List',
+    'term_table' => 'Terms List',
+    'privacy_table' => 'Privacy List',
 
     'faq_updated_at' => 'Updated At',
+    'term_updated_at' => 'Updated At',
+    'privacy_updated_at' => 'Updated At',
 
     'favorite' => 'Favorite',
 

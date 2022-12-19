@@ -15,14 +15,14 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0 text-dark">{{trans('lang.faq_plural')}}<small class="ml-3 mr-3">|</small><small>{{trans('lang.faq_desc')}}</small></h1>
+        <h1 class="m-0 text-dark">{{trans('lang.privacy_plural')}}<small class="ml-3 mr-3">|</small><small>{{trans('lang.privacy_desc')}}</small></h1>
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{url('/dashboard')}}"><i class="fa fa-dashboard"></i> {{trans('lang.dashboard')}}</a></li>
-          <li class="breadcrumb-item"><a href="{!! route('faqs.index') !!}">{{trans('lang.faq_plural')}}</a>
+          <li class="breadcrumb-item"><a href="{!! route('privacy.index') !!}">{{trans('lang.privacy_plural')}}</a>
           </li>
-          <li class="breadcrumb-item active">{{trans('lang.faq_create')}}</li>
+          <li class="breadcrumb-item active">{{trans('lang.privacy_create')}}</li>
         </ol>
       </div><!-- /.col -->
     </div><!-- /.row -->
@@ -39,18 +39,18 @@
       <ul class="nav nav-tabs align-items-end card-header-tabs w-100">
         @can('faqs.index')
         <li class="nav-item">
-          <a class="nav-link" href="{!! route('faqs.index') !!}"><i class="fa fa-list mr-2"></i>{{trans('lang.faq_table')}}</a>
+          <a class="nav-link" href="{!! route('privacy.index') !!}"><i class="fa fa-list mr-2"></i>{{trans('lang.privacy_table')}}</a>
         </li>
         @endcan
         <li class="nav-item">
-          <a class="nav-link active" href="{!! url()->current() !!}"><i class="fa fa-plus mr-2"></i>{{trans('lang.faq_create')}}</a>
+          <a class="nav-link active" href="{!! url()->current() !!}"><i class="fa fa-plus mr-2"></i>{{trans('lang.privacy_create')}}</a>
         </li>
       </ul>
     </div>
     <div class="card-body">
-      {!! Form::open(['route' => 'faqs.store']) !!}
+      {!! Form::open(['route' => 'privacy.store']) !!}
       <div class="row">
-        @include('faqs.fields')
+        @include('privacy.fields')
       </div>
       {!! Form::close() !!}
       <div class="clearfix"></div>

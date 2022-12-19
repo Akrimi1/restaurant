@@ -664,13 +664,13 @@ Route::get('/notificationsRestaurant', 'NotificationController@indexRestaurant')
 
 Route::get('/appCustomers', 'UsersController@indexCustomers');
 
-Route::get('/termsOfServices', 'TermsController@index');
 
-Route::get('/privacy', 'PrivacyController@index');
+Route::resource('terms', 'TermsController');
 
+
+Route::resource('privacy', 'PrivacyController');
 Route::get('/privacy/edit/{id}', 'PrivacyController@edit');
 
-Route::post('/privacy/update/{id}', 'PrivacyController@update');
 
 Route::get('/indexAbout', 'AboutController@index');
 
@@ -682,13 +682,6 @@ Route::get('/about/edit/{id}', 'AboutController@edit');
 
 Route::post('/about/update/{id}','AboutController@update');
 
-Route::get('/terms', 'TermsController@index');
-
-Route::post('/edit', 'TermsController@edit');
-
-Route::get('/terms/edit/{id}', 'TermsController@edit');
-
-Route::post('/terms/update/{id}','TermsController@update');
 
 Route::get('/liveOrderTrack', 'TrackController@index');
 

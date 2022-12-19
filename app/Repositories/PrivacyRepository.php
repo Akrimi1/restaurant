@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\About;
+use App\Models\Privacy;
 use InfyOm\Generator\Common\BaseRepository;
 
 /**
@@ -14,7 +14,7 @@ use InfyOm\Generator\Common\BaseRepository;
  * @method Faq find($id, $columns = ['*'])
  * @method Faq first($columns = ['*'])
 */
-class AboutRepository extends BaseRepository
+class PrivacyRepository extends BaseRepository
 {
     /**
      * @var array
@@ -28,6 +28,6 @@ class AboutRepository extends BaseRepository
      **/
     public function model()
     {
-        return About::class;
+        return Privacy::class;
     }
 }

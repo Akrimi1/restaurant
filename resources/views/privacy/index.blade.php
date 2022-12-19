@@ -30,11 +30,11 @@
         <li class="nav-item">
           <a class="nav-link active" href="{!! url()->current() !!}"><i class="fa fa-list mr-2"></i>{{trans('Privacy Policy')}}</a>
         </li>
-        <!--@can('faqs.create')-->
-        <!--<li class="nav-item">-->
-        <!--  <a class="nav-link" href="{!! route('faqs.create') !!}"><i class="fa fa-plus mr-2"></i>{{trans('lang.faq_create')}}</a>-->
-        <!--</li>-->
-        <!--@endcan-->
+        @can('privacy.create')
+        <li class="nav-item">
+        <a class="nav-link" href="{!! route('privacy.create') !!}"><i class="fa fa-plus mr-2"></i>{{trans('lang.privacy_create')}}</a>
+        </li>
+        @endcan
       
       </ul>
     </div>
@@ -56,12 +56,11 @@
                             <tbody>
                             @foreach($privacy as $key=>$value)
                                 <tr>
-                                         <?php $id = $value['id'];   ?>
-                                     <td>{!! $value['id'] !!}</td>
-                                    <td>{!! $value['content'] !!}</td>
+                                      <td>  {!! $value['id'] !!}</td>
+                                    <td> {!! $value['content'] !!}</td>
                                     <td>
                                         <div class='btn-group btn-group-sm'>
-                                              <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="{{ url('privacy/edit', $value['id']) }}" class='btn btn-link'>
+                                              <a data-toggle="tooltip" data-placement="bottom" title="Edit" href="{{ route('privacy.edit', $value['id']) }}" class='btn btn-link'>
                                                 <i class="fa fa-edit"></i>
                                               </a>
 
@@ -69,7 +68,7 @@
                                     </td>
                                     
                                 </tr>
-                            @endforeach
+                           @endforeach
                             </tbody>
                         </table>
                     </div>
