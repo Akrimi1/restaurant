@@ -28,21 +28,43 @@
         <li class="nav-item">
           <a class="nav-link active" href="<?php echo url()->current(); ?>"><i class="fa fa-list mr-2"></i><?php echo e(trans('lang.restaurant_table')); ?></a>
         </li>
-        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('restaurants.create')): ?>
-        <li class="nav-item">
-          <a class="nav-link" href="<?php echo route('restaurants.create'); ?>"><i class="fa fa-plus mr-2"></i><?php echo e(trans('Create New Vendor')); ?></a>
-        </li>
-        <?php endif; ?>
+       
         <?php echo $__env->make('layouts.right_toolbar', compact('dataTable'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       </ul>
     </div>
     <div class="card-body">
+    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('restaurants.create')): ?>
+        <form method="GET" action="<?php echo route('restaurants.create'); ?>" class="d-flex flex-column justify-content-center align-items-center h-25">
+          <button type="submit" class="nav-link btn btn-white btn-square-md" href="<?php echo route('restaurants.create'); ?>">
+          <div class="d-flex flex-column justify-content-center align-items-center h-25">
+             
+            <i class="fa-solid fa-circle-plus fa-lg pb-4"></i>
+
+            <?php echo e(trans('Add Vendor')); ?>
+
+        </div>
+      </button>
+      </form>
+        
+        <?php endif; ?>
       <?php echo $__env->make('restaurants.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
       <div class="clearfix"></div>
     </div>
   </div>
 </div>
 <?php $__env->stopSection(); ?>
-
-
+<style>
+.btn-square-md {
+width: 140px !important;
+max-width: 100% !important;
+max-height: 100% !important;
+height: 100px !important;
+text-align: center;
+padding: 0px;
+font-size:16px!important;
+background: transparent;
+border: 2px solid #F9F8F8!important;
+color: #558F91;
+}
+</style>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\karri\resources\views/restaurants/index.blade.php ENDPATH**/ ?>
