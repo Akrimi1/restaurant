@@ -197,7 +197,13 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
     <!--</li>-->
 
               
+    <li class="nav-item">
 
+<a class="nav-link {{ Request::is('restaurants*') ? 'active' : '' }}" href="{!! url('restaurants/create') !!}">@if($icons)
+
+        <i class="nav-icon fa fa-cutlery"></i>@endif<p>{{trans('Add Vendor')}}</p></a>
+
+</li>
                 <li class="nav-item">
 
 
@@ -238,14 +244,7 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
 
 
 
-            <!--<li class="nav-item">-->
-
-            <!--        <a class="nav-link {{ Request::is('restaurants*') ? 'active' : '' }}" href="{!! url('restaurants/vendors') !!}">@if($icons)-->
-
-            <!--                <i class="nav-icon fa fa-cutlery"></i>@endif<p>{{trans('vendor add')}}</p></a>-->
-
-            <!--    </li>-->
-
+            
             
 
               @if($user_id == 1)
@@ -271,6 +270,8 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
                             <i class="nav-icon fa fa-cutlery"></i>@endif<p>{{trans('Show Vendors')}}</p></a>
 
                 </li>
+                
+
 
             @endcan
 

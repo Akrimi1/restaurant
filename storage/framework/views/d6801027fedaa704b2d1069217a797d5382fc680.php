@@ -197,7 +197,13 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
     <!--</li>-->
 
               
+    <li class="nav-item">
 
+<a class="nav-link <?php echo e(Request::is('restaurants*') ? 'active' : ''); ?>" href="<?php echo url('restaurants/create'); ?>"><?php if($icons): ?>
+
+        <i class="nav-icon fa fa-cutlery"></i><?php endif; ?><p><?php echo e(trans('Add Vendor')); ?></p></a>
+
+</li>
                 <li class="nav-item">
 
 
@@ -238,14 +244,7 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
 
 
 
-            <!--<li class="nav-item">-->
-
-            <!--        <a class="nav-link <?php echo e(Request::is('restaurants*') ? 'active' : ''); ?>" href="<?php echo url('restaurants/vendors'); ?>"><?php if($icons): ?>-->
-
-            <!--                <i class="nav-icon fa fa-cutlery"></i><?php endif; ?><p><?php echo e(trans('vendor add')); ?></p></a>-->
-
-            <!--    </li>-->
-
+            
             
 
               <?php if($user_id == 1): ?>
@@ -271,6 +270,8 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
                             <i class="nav-icon fa fa-cutlery"></i><?php endif; ?><p><?php echo e(trans('Show Vendors')); ?></p></a>
 
                 </li>
+                
+
 
             <?php endif; ?>
 
