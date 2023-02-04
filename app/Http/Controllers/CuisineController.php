@@ -96,13 +96,13 @@ class CuisineController extends Controller
       $manager_id=Auth::user()->id;
       
       $input['manager_id'] = $manager_id;
- 
-      $restaurant_ids = $input['restaurants'];
+      if(in_array("restaurants", $input)){
+        $restaurant_ids = $input['restaurants'];
      
-      $restaurants_ids = implode(",",$restaurant_ids);
+        $restaurants_ids = implode(",",$restaurant_ids);
       
-      $input['restaurant_id'] = $restaurants_ids;
-      
+        $input['restaurant_id'] = $restaurants_ids;
+      }
         
         $customFields = $this->customFieldRepository->findByField('custom_field_model', $this->cuisineRepository->model());
         try {
