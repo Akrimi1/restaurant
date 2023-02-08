@@ -4,7 +4,7 @@
 
     <!-- Brand Logo -->
 
-    <a href="{{url('dashboard')}}" class="brand-link {{setting('logo_bg_color','bg-white')}}">
+    <a href="{{url('dashboard')}}" class="brand-link">
 
         <!--<img src="{{-- {{ url('/') }} --}} /images/logo_default.png" alt="{{setting('app_name')}}" class="brand-image">-->
 

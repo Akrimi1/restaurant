@@ -907,7 +907,7 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
 
         <!-- Navbar -->
 
-        <nav class="main-header navbar navbar-expand {{setting('fixed_header','')}} {{setting('nav_color','navbar-light bg-white')}}">
+        <nav class="main-header navbar navbar-expand {{setting('fixed_header','')}}  {{setting('nav_color','navbar-light bg-white')}}">
 
             <!-- Left navbar links -->
 
@@ -1115,7 +1115,7 @@ $role_id = DB::table('users')->select('role_id')->where('id', $user_id)->first()
 
     <!-- Content Wrapper. Contains page content -->
 
-        <div class="content-wrapper ">
+        <div class="content-wrapper sidebar-{{setting('theme_contrast')}}-{{setting('theme_color')}} {{setting('theme_color')}}">
 
             @yield('content')
 

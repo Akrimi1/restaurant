@@ -4,7 +4,7 @@
 
     <!-- Brand Logo -->
 
-    <a href="<?php echo e(url('dashboard')); ?>" class="brand-link <?php echo e(setting('logo_bg_color','bg-white')); ?>">
+    <a href="<?php echo e(url('dashboard')); ?>" class="brand-link">
 
         <!--<img src=" /images/logo_default.png" alt="<?php echo e(setting('app_name')); ?>" class="brand-image">-->
 
